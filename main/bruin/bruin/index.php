@@ -1,3 +1,8 @@
+<?php
+include 'db/db.php';
+session_start();
+$user = $_SESSION['user'] ?? null;
+?>
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
@@ -22,8 +27,47 @@
         <link rel="stylesheet" href="css/responsive.css">
     </head>
     <body>
-         <!-- header -->
+        <!-- header -->
         <header class="header-area header-three">
+            <div class="header-top second-header d-none d-md-block">
+                <div class="container">
+                    <div class="row align-items-center">      
+                        <div class="col-lg-6 col-md-6 d-none d-lg-block">
+                             <div class="header-cta">
+                               <ul>                                   
+                                    <li>
+                                       <i class="fas fa-clock"></i>
+                                        <span>Mon - Fri: 9:00 - 19:00/ Closed on Weekends</span>
+                                    </li>
+                                  
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4 d-none d-lg-block text-right">
+                           <div class="header-social">
+                                <span>
+                                    
+                                   
+                                   </span>                    
+                                   <!--  /social media icon redux -->                               
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-4 d-none d-lg-block mt-10 mb-10 text-right">
+                           <div class="header-social">
+                                        <span>
+                                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                                            <a href="#" title="LinkedIn"><i class="fab fa-instagram"></i></a>               
+                                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                                            <a href="#" title="Twitter"><i class="fab fa-youtube"></i></a>
+                                           </span>                    
+                                           <!--  /social media icon redux -->                               
+                                    </div>
+                        </div>
+                         
+                        
+                    </div>
+                </div>
+            </div>		
 			  <div id="header-sticky" class="menu-area">
                 <div class="container">
                     <div class="second-menu">
@@ -39,42 +83,28 @@
                                     <nav id="mobile-menu">
                                           <ul>
                                             <li class="has-sub">
-                                                <a href="index.html">Home</a>
-                                                <ul>													
-													<li><a href="index.html">Home Page 01</a></li>
-													<li><a href="index-2.html">Home Page 02</a></li>													
-																										
-												</ul>
+                                                <a href="index.php">Home</a>
+                                             
                                             </li>
                                             <li><a href="about.html">About</a></li>        
-                                            <li><a href="menu.html">Menu</a></li>     
-                                              <li class="has-sub">
-                                                <a href="services.html">Services</a>
-                                                <ul>													
-													<li> <a href="services.html">Services</a></li>
-                                                    <li> <a href="single-service.html">Services Details</a></li>
-												</ul>
-                                            </li>  
-                                              <li class="has-sub"><a href="#">Pages</a>
-												<ul>
-                                                    <li><a href="projects.html">Gallery</a></li>
-                                                    <li><a href="faq.html">Faq</a></li>
-                                                    <li><a href="team.html">Team</a></li>
-                                                    
-                                                    <li><a href="shop.html">Shop</a></li>
-													<li><a href="shop-details.html">Shop Details</a>
-                                                  </ul>
-											</li>
-                                            <li class="has-sub"> 
-                                                <a href="blog.html">Blog</a>
-                                                <ul>
-                                                    <li><a href="blog.html">Blog</a></li>
-                                                    <li><a href="blog-details.html">Blog Details</a></li>
-                                                </ul>
-                                            </li>
+                                            
+                                            
 
 
-                                            <li><a href="contact.html">Contact</a></li>                                               
+                                            
+                                            
+                                            
+                                            <li><a href="contact.html">Contact</a></li> 
+                                            <!-- if user is exist then show logout button -->
+                                            <?php if(isset($_SESSION['user'])){ ?>
+                                                <li><a href="../bruin/auth/logout.php" <?php echo $user; ?>>
+                                                    Logout</a></li>
+                                            <?php } ?>
+                                            <!-- if user is logged in, show dashboard button -->
+                                                <?php if(isset($_SESSION['user'])){ ?>
+                                                    <li><a href="../bruin/dashboard/dashboard.php">
+                                                        Dashboard</a></li>
+                                                <?php } ?>
                                         </ul>
                                     </nav>
                                 </div>
@@ -104,11 +134,11 @@
         
         <!-- main-area -->
         <main>
-            <!-- slider-area -->
+           <!-- slider-area -->
             <section id="home" class="slider-area fix p-relative">
                
                 <div class="slider-active" style="background: #101010;">
-				<div class="single-slider slider-bg d-flex align-items-center" style="background-image: url(img/slider/slider_bg_01.png); background-size: cover;">
+				<div class="single-slider slider-bg d-flex align-items-center" style="background-image: url(img/slider/slider_bg_02.png); background-size: cover;">
                         <div class="container">
                            <div class="row justify-content-center align-items-center">
                               
@@ -131,13 +161,67 @@
                             </div>
                         </div>
                     </div>
-                    
+                    <div class="single-slider slider-bg d-flex align-items-center" style="background-image: url(img/slider/slider_bg.png); background-size: cover;">
+                        <div class="container">
+                           <div class="row justify-content-center align-items-center">
+                              
+                                <div class="col-lg-7 col-md-7">
+                                    <div class="slider-content s-slider-content mt-100">
+                                         <h5 data-animation="fadeInUp" data-delay=".4s">Welcome To Bruin Cafe</h5>
+                                         <h2 data-animation="fadeInUp" data-delay=".4s">Enjoy Your Morning Coffee Shot</h2>
+                                        <p data-animation="fadeInUp" data-delay=".6s">Donec vitae libero non enim placerat eleifend aliquam erat volutpat. Curabitur diam ex, dapibus purus sapien, cursus sed nisl tristique, commodo gravida lectus non.</p>
+                                        
+                                          <div class="slider-btn mt-30 mb-105">     
+                                            <a href="contact.html" class="btn ss-btn mr-15" data-animation="fadeInLeft" data-delay=".4s">Book  A Table</a>
+                                              <a href="contact.html" class="btn ss-btn active" data-animation="fadeInLeft" data-delay=".4s">Visit Our Shop</a>
+                                        </div>        
+                                                              
+                                    </div>
+                                </div>
+                                <div class="col-lg-5 col-md-5 p-relative">
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     
                
             </section>
             <!-- slider-area-end -->
-            
+             <!-- brand-area -->
+            <div class="brand-area pt-60 pb-60" style="background:#3f271e">
+                <div class="container">
+                    <div class="row brand-active">
+                        <div class="col-xl-2">
+                            <div class="single-brand">
+                                <img src="img/brand/b-logo1.png" alt="img">
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="single-brand">
+                                 <img src="img/brand/b-logo2.png" alt="img">
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="single-brand">
+                                 <img src="img/brand/b-logo3.png" alt="img">
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="single-brand">
+                                  <img src="img/brand/b-logo4.png" alt="img">
+                            </div>
+                        </div>
+                        <div class="col-xl-2">
+                            <div class="single-brand">
+                                 <img src="img/brand/b-logo5.png" alt="img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- brand-area-end -->
              <!-- about-area -->
             <section class="about-area about-p pt-120 pb-120 p-relative fix">
                
@@ -495,13 +579,89 @@
                                              </div>
                                         </div>
                                     </li>
+                                     <li>
+                                        <div class="meal-container">
+                                            <div class="meal-img">
+                                                <img src="img/shop/img1.jpg" alt="img">
+                                            </div>
+                                            <div class="meal-content">
+                                                <h5>
+                                                    Iced Latte
+                                                </h5>   
+                                                <p>Espresso and Light Layer of Crema</p>
+                                            </div>
+                                            <div class="line">
+                                                <hr>
+                                            </div>
+                                             <div class="meal-price">
+                                                 <strong>$13.00</strong>
+                                             </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="meal-container">
+                                            <div class="meal-img">
+                                                <img src="img/shop/img3.jpg" alt="img">
+                                            </div>
+                                            <div class="meal-content">
+                                                <h5>
+                                                   Espresso
+                                                </h5>   
+                                                <p>Espresso and Light Layer of Crema</p>
+                                            </div>
+                                            <div class="line">
+                                                <hr>
+                                            </div>
+                                             <div class="meal-price">
+                                                 <strong>$13.00</strong>
+                                             </div>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="meal-container">
+                                            <div class="meal-img">
+                                                <img src="img/shop/img5.jpg" alt="img">
+                                            </div>
+                                            <div class="meal-content">
+                                                <h5>
+                                                   Caramel Latte
+                                                </h5>   
+                                                <p>Espresso and Light Layer of Crema</p>
+                                            </div>
+                                            <div class="line">
+                                                <hr>
+                                            </div>
+                                             <div class="meal-price">
+                                                 <strong>$13.00</strong>
+                                             </div>
+                                        </div>
+                                    </li>
+                                     <li>
+                                        <div class="meal-container">
+                                            <div class="meal-img">
+                                                <img src="img/shop/img7.jpg" alt="img">
+                                            </div>
+                                            <div class="meal-content">
+                                                <h5>
+                                                    <strong> Cortado </strong>
+                                                </h5>   
+                                                <p>Espresso and Light Layer of Crema</p>
+                                            </div>
+                                            <div class="line">
+                                                <hr>
+                                            </div>
+                                             <div class="meal-price">
+                                                 <strong>$13.00</strong>
+                                             </div>
+                                        </div>
+                                    </li>
                                 </ul>
                                 
                             </div>
                         </div>        
                         <div class="col-md-12 text-center">
                               <div class="slider-btn">                                          
-                                     <a href="about.html" class="btn ss-btn smoth-scroll mt-30">Discover More</a>				
+                                     <a href="menu.html" class="btn ss-btn smoth-scroll">Discover More</a>				
                                 </div>
                         </div>
                     </div>
@@ -669,7 +829,7 @@
                 </div>
             </section>
             <!-- product-slider-end -->
-                <!-- testimonial-area -->
+               <!-- testimonial-area -->
             <section class="testimonial-area pt-120 pb-90 p-relative fix">
                 <div class="container">
                     <div class="row">
@@ -1011,7 +1171,7 @@
                                 </div>
                                 <div class="footer-link">
                                     <ul>                                        
-                                        <li><a href="index.html">Home</a></li>
+                                        <li><a href="index.php">Home</a></li>
                                         <li><a href="about.html"> About Us</a></li>
                                         <li><a href="services.html"> Services </a></li>
                                         <li><a href="contact.html"> Contact Us</a></li>

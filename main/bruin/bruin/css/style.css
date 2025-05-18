@@ -505,9 +505,9 @@ top: -3px;
   color: #3f271e;
     display: none;
 }
-.main-menu ul li:last-child a::after,.main-menu .has-sub ul li a::after {
+/* .main-menu ul li:last-child a::after,.main-menu .has-sub ul li a::after {
   display: none;
-}
+} */
 .main-menu ul li:first-child {
 	margin-left: 0;
 }
