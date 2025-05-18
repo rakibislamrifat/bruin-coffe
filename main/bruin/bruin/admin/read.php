@@ -168,11 +168,21 @@
                                     ?>
                                 </div>
                                 
+                                <div class="d-flex justify-content-between">
                                 <div class="rifat-order-meta">
                                     <a href="update.php?id=<?php echo $row['id']; ?>" class="rifat-details-btn btn">
-                                        <i class="fas fa-eye me-1"></i> View Details
+                                        <i class="fas fa-eye me-1"></i> Update Product
                                     </a>
                                 </div>
+                                <!-- delete button -->
+                                
+                                <div class="rifat-order-meta">
+                                <a href="delete.php?id=<?php echo $row['id']; ?>" class="rifat-details-btn btn">
+                                    <i class="fas fa-trash me-1"></i> Delete Product
+                                </a>
+                                </div>
+                                </div>
+
                             </div>
                         </div>
                     </div>
