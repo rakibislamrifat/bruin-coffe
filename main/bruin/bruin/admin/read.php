@@ -169,7 +169,7 @@
                                 </div>
                                 
                                 <div class="rifat-order-meta">
-                                    <a href="order_details.php?id=<?php echo $row['id']; ?>" class="rifat-details-btn btn">
+                                    <a href="update.php?id=<?php echo $row['id']; ?>" class="rifat-details-btn btn">
                                         <i class="fas fa-eye me-1"></i> View Details
                                     </a>
                                 </div>
