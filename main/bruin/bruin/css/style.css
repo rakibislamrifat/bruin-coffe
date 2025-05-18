@@ -4584,6 +4584,7 @@ color: #fff;
 /* 15. blog */
 
 .home-blog-active .product {
+    height: 300px;
   margin-left: 15px;
   margin-right: 15px;
   overflow: hidden;
@@ -6837,9 +6838,12 @@ pre cite {
 }
 .product__img {
   position: relative;
+height: 300px !important;
 }
 .product__img img {
 	width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .product:hover .product-action a {
   margin: 0 5px;

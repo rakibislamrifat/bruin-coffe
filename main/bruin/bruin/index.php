@@ -2,6 +2,9 @@
 include 'db/db.php';
 session_start();
 $user = $_SESSION['user'] ?? null;
+$products = "SELECT * FROM orders";
+$result = mysqli_query($conn, $products);
+$products = mysqli_fetch_all($result, MYSQLI_ASSOC);
 ?>
 <!doctype html>
 <html class="no-js" lang="zxx">
@@ -694,145 +697,30 @@ $user = $_SESSION['user'] ?? null;
                          
                     </div>
                     <div class="row home-blog-active">
-                        <div class="col-lg-4 col-md-12">
-                             
-                          <div class="product mb-40">
-                            <div class="product__img">
-                                <a href="shop-details.html"><img src="img/shop/img1.jpg" alt=""></a>
-                                <div class="product-action text-center">
-
-                                    <a href="shop-details.html">Add Cart</a>
-
-                                </div>
-                            </div>
-                            <div class="product__content pt-30">
-                             
-                                <h4 class="pro-title"><a href="shop-details.html">Caramel Macchiato</a></h4>
-                                <div class="price">
-                                   <span class="old-price">$20</span>
-                                    <span>$15</span>
-                                </div>
-                            </div>
-                        </div> 
-                             
-                         
-                        </div>
-                         <div class="col-lg-4 col-md-12">
-                             
-                            <div class="product mb-40">
-                            <div class="product__img">
-                                <a href="shop-details.html"><img src="img/shop/img2.jpg" alt=""></a>
-                                <div class="product-action text-center">
-
-                                    <a href="shop-details.html">Add Cart</a>
-
-                                </div>
-                            </div>
-                            <div class="product__content pt-30">
-                  
-                                <h4 class="pro-title"><a href="shop-details.html">Mocha</a></h4>
-                                <div class="price">
-                                   <span class="old-price">$20</span>
-                                    <span>$15</span>
-                                </div>
-                            </div>
-                        </div> 
-                               
-                             
-                         
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                             
-                            <div class="product mb-40">
-                            <div class="product__img">
-                                <a href="shop-details.html"><img src="img/shop/img3.jpg" alt=""></a>
-                                <div class="product-action text-center">
-
-                                    <a href="shop-details.html">Add Cart</a>
-
-                                </div>
-                            </div>
-                            <div class="product__content pt-30">
-    
-                                <h4 class="pro-title"><a href="shop-details.html">French Vanilla</a></h4>
-                                <div class="price">
-                                   <span class="old-price">$20</span>
-                                    <span>$15</span>
-                                </div>
-                            </div>
-                        </div> 
-                             
-                             
-                         
-                        </div>
-                         <div class="col-lg-4 col-md-12">
-                             
-                            <div class="product mb-40">
-                            <div class="product__img">
-                                <a href="shop-details.html"><img src="img/shop/img4.jpg" alt=""></a>
-                                <div class="product-action text-center">
-
-                                    <a href="shop-details.html">Add Cart</a>
-
-                                </div>
-                            </div>
-                            <div class="product__content pt-30">
-                       
-                                <h4 class="pro-title"><a href="shop-details.html">Latte</a></h4>
-                                <div class="price">                                    
-                                   <span class="old-price">$20</span>
-                                    <span>$15</span>
-                                </div>
-                            </div>
-                        </div> 
-                             
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                             
-                            <div class="product mb-40">
-                            <div class="product__img">
-                                <a href="shop-details.html"><img src="img/shop/img5.jpg" alt=""></a>
-                                <div class="product-action text-center">
-
-                                    <a href="shop-details.html">Add Cart</a>
-
-                                </div>
-                            </div>
-                            <div class="product__content pt-30">
-                       
-                                <h4 class="pro-title"><a href="shop-details.html">French Vanilla</a></h4>
-                                <div class="price">
-                                    <span class="old-price">$20</span>
-                                    <span>$15</span>
-                                </div>
-                            </div>
-                        </div> 
-                             
-                        </div>
-                        <div class="col-lg-4 col-md-12">
-                             
-                            <div class="product mb-40">
-                            <div class="product__img">
-                                <a href="shop-details.html"><img src="img/shop/img6.jpg" alt=""></a>
-                                <div class="product-action text-center">
-
-                                    <a href="shop-details.html">Add Cart</a>
-
-                                </div>
-                            </div>
-                            <div class="product__content pt-30">
-                       
-                                <h4 class="pro-title"><a href="shop-details.html">Latte</a></h4>
-                                <div class="price">
-                                    <span>$95.00</span>
-                                    <span class="old-price">$120.00</span>
-                                </div>
-                            </div>
-                        </div> 
-                             
-                        </div>
-                        
+    <?php foreach ($products as $product): ?>
+        <div class="col-lg-4 col-md-12">
+            <div class="product mb-40">
+                <div class="product__img">
+                    <a href="shop-details.php?id=<?php echo $product['id']; ?>">
+                        <img src="uploads/<?php echo $product['image']; ?>" alt="">
+                    </a>
+                    <div class="product-action text-center">
+                        <a href="shop-details.php?id=<?php echo $product['id']; ?>">Add Cart</a>
                     </div>
+                </div>
+                <div class="product__content pt-30">
+                    <h4 class="pro-title">
+                        <a href="shop-details.php?id=<?php echo $product['id']; ?>"><?php echo $product['order_name']; ?></a>
+                    </h4>
+                    <div class="price">
+                        <span>$<?php echo $product['price']; ?></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
                 </div>
             </section>
             <!-- product-slider-end -->

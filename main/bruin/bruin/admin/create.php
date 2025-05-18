@@ -17,6 +17,7 @@ if (isset($_POST['submit'])) {
             quantity INT NOT NULL,
             price DECIMAL(10,2) NOT NULL,
             description TEXT,
+            product_category VARCHAR(255) NOT NULL,
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         );
     ";
@@ -38,8 +39,8 @@ if (isset($_POST['submit'])) {
         $upload_path = $upload_dir . $image_name;
 
         if (move_uploaded_file($tmp_name, $upload_path)) {
-            $sql = "INSERT INTO orders (image, order_name, quantity, price, description) 
-                    VALUES ('$image_name', '$order_name', $quantity, $price, '$description')";
+            $sql = "INSERT INTO orders (image, order_name, quantity, price, description, product_category) 
+                    VALUES ('$image_name', '$order_name', $quantity, $price, '$description', '$product_category')";
 
             if (mysqli_query($conn, $sql)) {
                 header("Location: ../dashboard/dashboard.php");
@@ -161,6 +162,9 @@ if (isset($_POST['submit'])) {
             <input type="number" name="quantity" required>
             <label for="description">Description:</label>
             <input type="text" name="description" required>
+            <label for="product_category">Category:</label>
+            <input type="text" name="product_category" required>
+
 
             <label for="price">Price:</label>
             <input type="number" step="0.01" name="price" required>

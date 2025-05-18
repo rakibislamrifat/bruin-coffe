@@ -1,9 +1,106 @@
+<?php 
+session_start();
+include '../bruin/db/db.php';  // This should set $conn as your mysqli connection
+
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+$product_query = "SELECT * FROM orders WHERE id = $id";
+$result = mysqli_query($conn, $product_query);
+
+$user = $_SESSION['user'] ?? null;
+$email = null;
+
+if ($user !== null) {
+    // Get email of the logged in user using prepared statement
+    $stmt = $conn->prepare("SELECT email FROM users WHERE username = ?");
+    $stmt->bind_param("s", $user);
+    $stmt->execute();
+    $stmt->bind_result($email);
+    $stmt->fetch();
+    $stmt->close();
+
+    if ($email !== null) {
+        echo "User email: " . htmlspecialchars($email) . "<br>";
+    } else {
+        echo "User email not found.<br>";
+    }
+} else {
+    echo "User not logged in.<br>";
+}
+
+if (!$result || mysqli_num_rows($result) === 0) {
+    die("Product not found.");
+}
+
+$product = mysqli_fetch_assoc($result);
+
+if (isset($_POST['add_cart'])) {
+    // Sanitize inputs using mysqli_real_escape_string
+    $product_id = mysqli_real_escape_string($conn, $_POST['product_id']);
+    $product_name = mysqli_real_escape_string($conn, $_POST['product_name']);
+    $product_price = floatval($_POST['product_price']);
+    $product_quantity = intval($_POST['product_quantity']);
+    $product_image = mysqli_real_escape_string($conn, $_POST['product_image']);
+    $product_category = mysqli_real_escape_string($conn, $_POST['product_category']);
+    $email_safe = mysqli_real_escape_string($conn, $email ?? '');
+
+    if (empty($email_safe)) {
+        echo "<script>alert('You must be logged in to add to cart.');</script>";
+        exit;
+    }
+
+    // Create cart table if not exists
+    $create_table_sql = "CREATE TABLE IF NOT EXISTS cart (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        product_id INT NOT NULL,
+        product_name VARCHAR(255) NOT NULL,
+        product_price FLOAT NOT NULL,
+        product_quantity INT NOT NULL,
+        product_image VARCHAR(255) NOT NULL,
+        product_category VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )";
+
+    if (!mysqli_query($conn, $create_table_sql)) {
+        echo "<script>alert('Error creating cart table: " . mysqli_error($conn) . "');</script>";
+    } else {
+        // Check if product already exists in cart for this user (email)
+        $check_sql = "SELECT * FROM cart WHERE product_id = '$product_id' AND email = '$email_safe'";
+        $check_result = mysqli_query($conn, $check_sql);
+
+        if (mysqli_num_rows($check_result) > 0) {
+            // Update quantity if product already in cart
+            $update_sql = "UPDATE cart SET product_quantity = product_quantity + $product_quantity 
+                          WHERE product_id = '$product_id' AND email = '$email_safe'";
+            if (mysqli_query($conn, $update_sql)) {
+                echo "<script>alert('Product quantity updated in cart!');</script>";
+            } else {
+                echo "<script>alert('Failed to update cart: " . mysqli_error($conn) . "');</script>";
+            }
+        } else {
+            // Insert new product to cart
+            $insert_sql = "INSERT INTO cart 
+                (product_id, product_name, product_price, product_quantity, product_image, product_category, email) 
+                VALUES 
+                ('$product_id', '$product_name', '$product_price', '$product_quantity', '$product_image', '$product_category', '$email_safe')";
+
+            if (mysqli_query($conn, $insert_sql)) {
+                echo "<script>alert('Product added to cart successfully!');</script>";
+            } else {
+                echo "<script>alert('Failed to add product to cart: " . mysqli_error($conn) . "');</script>";
+            }
+        }
+    }
+}
+?>
+
 <!doctype html>
 <html class="no-js" lang="zxx">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Bruin - Coffe Shop HTML Template</title>
+        <title>Bruin - Coffee Shop HTML Template</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
@@ -98,7 +195,7 @@
                                                     <li><a href="team.html">Team</a></li>
                                                     
                                                     <li><a href="shop.html">Shop</a></li>
-													<li><a href="shop-details.html">Shop Details</a>
+													<li><a href="shop-details.php?id=<?php echo $product['id']; ?>">Shop Details</a>
                                                   </ul>
 											</li>
                                             <li class="has-sub"> 
@@ -175,15 +272,15 @@
                             <ul class="nav" id="myTab2" role="tablist">
                                 <li class="nav-item">
                                     <a class="nav-link active" id="home-tab" data-bs-toggle="tab" href="#home" role="tab"
-                                        aria-selected="true"><img src="img/shop/details/thumb1.jpg" alt=""> </a>
+                                        aria-selected="true"><img src="uploads/<?php echo $product['image']; ?>" alt=""> </a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab" data-bs-toggle="tab" href="#profile" role="tab"
-                                        aria-selected="false"><img src="img/shop/details/thumb2.jpg" alt=""></a>
+                                        aria-selected="false"><img src="uploads/<?php echo $product['image']; ?>" alt=""></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="profile-tab2" data-bs-toggle="tab" href="#profile1" role="tab"
-                                        aria-selected="false"><img src="img/shop/details/thumb3.jpg" alt=""></a>
+                                        aria-selected="false"><img src="uploads/<?php echo $product['image']; ?>" alt=""></a>
                                 </li>
                             </ul>
                         </div>
@@ -191,17 +288,17 @@
                             <div class="tab-content" id="myTabContent2">
                                 <div class="tab-pane fade show active" id="home" role="tabpanel">
                                     <div class="product-large-img">
-                                        <img src="img/shop/details/large1.jpg" alt="">
+                                        <img src="uploads/<?php echo $product['image']; ?>" alt="">
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel">
                                     <div class="product-large-img">
-                                        <img src="img/shop/details/large2.jpg" alt="">
+                                        <img src="uploads/<?php echo $product['image']; ?>" alt="">
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="profile1" role="tabpanel">
                                     <div class="product-large-img">
-                                        <img src="img/shop/details/large3.jpg" alt="">
+                                        <img src="uploads/<?php echo $product['image']; ?>" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -211,29 +308,33 @@
                         <div class="product-details mb-30">
                             <div class="product-details-title">
                                 <p>Workstead</p>
-                                <h1>Helios Piranho Lamp</h1>
+                                <h1><?php echo $product['order_name']; ?></h1>
                                 <div class="price details-price pb-30 mb-20">
-                                    <span>$700.00</span>
-                                    <span class="old-price">$820.00</span>
+                                    <span>$<?php echo $product['price']; ?></span>
+                                    
                                 </div>
                             </div>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page
-                                when looking at its
-                                layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of
-                                letters, as opposed to
-                                using 'Content here, content here', making it look like readable English.</p>
+                            <p><?php echo $product['description']; ?></p>
                             <div class="product-cat mt-30 mb-30">
                                 <span>Category: </span>
                                 <a href="#">furniture,</a>
                                 <a href="#">decor</a>
                             </div>                            
                             <div class="product-details-action">
-                                <form action="#">
-                                    <div class="plus-minus">
-                                        <div class="cart-plus-minus"><input type="text" value="1" /></div>
-                                    </div>
-                                    <button class="btn btn-black" type="submit">add to cart</button>                                   
-                                </form>
+                            <form action="shop-details.php?id=<?php echo $product['id']; ?>" method="POST">
+                                <input type="hidden" name="product_id" value="<?php echo $product['id']; ?>">
+                                <input type="hidden" name="product_name" value="<?php echo $product['order_name']; ?>">
+                                <input type="hidden" name="product_price" value="<?php echo $product['price']; ?>">
+                                <input type="hidden" name="product_image" value="<?php echo $product['image']; ?>">
+                                <input type="hidden" name="product_category" value="Furniture"> <!-- or dynamic -->
+                                <input type="hidden" name="email" value="<?php echo $email; ?>">
+                                <div class="quantity-input mb-3">
+                                    <label for="quantity">Quantity:</label>
+                                    <input type="number" id="quantity" name="product_quantity" value="1" min="1" class="form-control" style="width: 100px; display: inline-block;">
+                                </div>
+
+                                <button type="submit" name="add_cart" class="btn btn-black">Add to Cart</button>
+                            </form>
                             </div>
 							<div class="product-social mt-45">
                                 <a href="#"><i class="fab fa-facebook-f"></i></a>

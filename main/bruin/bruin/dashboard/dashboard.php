@@ -519,6 +519,12 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <span class="rifat-menu-icon"><i class="fas fa-home"></i></span>
                     <span>Dashboard</span>
                 </li>
+                <li class="rifat-menu-item active">
+                    <a href="../add-cart.php">
+                    <span class="rifat-menu-icon"><i class="fas fa-shopping-cart"></i></span>
+                    <span>My Cart</span>
+                    </a>
+                </li>
                 <!-- <li class="rifat-menu-item">
                     <span class="rifat-menu-icon"><i class="fas fa-file-alt"></i></span>
                     <span>Forms</span>
