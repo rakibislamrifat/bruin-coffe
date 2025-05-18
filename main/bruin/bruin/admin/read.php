@@ -97,7 +97,7 @@
             transform: translateX(-50%);
             width: 80px;
             height: 3px;
-            background: linear-gradient(90deg, #4e73df 0%, #224abe 100%);
+            background: #6F3727;
         }
         .rifat-qty {
             display: inline-flex;

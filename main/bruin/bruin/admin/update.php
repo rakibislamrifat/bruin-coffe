@@ -171,7 +171,7 @@ $order = mysqli_fetch_assoc($result);
             position: relative;
         }
         .rifat-file-upload:hover {
-            border-color: #4e73df;
+            border-color: #6F3727;
             background-color: #eef2ff;
         }
         .rifat-file-upload input[type="file"] {
@@ -184,14 +184,14 @@ $order = mysqli_fetch_assoc($result);
             cursor: pointer;
         }
         .rifat-file-upload-label {
-            color: #4e73df;
+            color: #6F3727;
             font-weight: 500;
             display: block;
             margin-bottom: 5px;
         }
         .rifat-file-upload-icon {
             font-size: 1.5rem;
-            color: #4e73df;
+            color: #6F3727;
             margin-bottom: 10px;
         }
         .rifat-form-group {

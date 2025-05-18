@@ -1,10 +1,19 @@
 <?php
 /* Template Name: My Dashboard */
+require '../db/db.php';
 session_start();
 if (!isset($_SESSION['user'])) {
     header("Location: ../auth/login.php");
     exit;
 }
+// load all the data from the database
+$sql = "SELECT * FROM orders";
+$result = mysqli_query($conn, $sql);
+$orders = mysqli_fetch_all($result, MYSQLI_ASSOC);
+$users = "SELECT * FROM users";
+$result = mysqli_query($conn, $users);
+$users = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
 ?>
 
 <!DOCTYPE html>
@@ -559,8 +568,8 @@ if (!isset($_SESSION['user'])) {
                         <i class="fas fa-file-alt"></i>
                     </div>
                     <div class="rifat-stat-info">
-                        <div class="rifat-stat-value">12</div>
-                        <div class="rifat-stat-label">Pending Forms</div>
+                        <div class="rifat-stat-value"><?php echo count($orders); ?></div>
+                        <div class="rifat-stat-label">Total Products</div>
                     </div>
                 </div>
                 
@@ -570,7 +579,7 @@ if (!isset($_SESSION['user'])) {
                     </div>
                     <div class="rifat-stat-info">
                         <div class="rifat-stat-value">28</div>
-                        <div class="rifat-stat-label">Completed Forms</div>
+                        <div class="rifat-stat-label">Total Orders</div>
                     </div>
                 </div>
                 
@@ -579,35 +588,14 @@ if (!isset($_SESSION['user'])) {
                         <i class="fas fa-clock"></i>
                     </div>
                     <div class="rifat-stat-info">
-                        <div class="rifat-stat-value">5</div>
-                        <div class="rifat-stat-label">Days Remaining</div>
+                        <div class="rifat-stat-value"><?php echo count($users); ?></div>
+                        <div class="rifat-stat-label">Total Users</div>
                     </div>
                 </div>
             </div>
             
             <div class="rifat-cards-container">
-                <!-- <div class="rifat-card">
-                    <div class="rifat-card-title">Quick Access</div>
-                    <div class="rifat-card-content">
-                        Access your frequently used tools and resources with a single click. Streamline your workflow and increase productivity.
-                    </div>
-                    <form method="post" style="display: flex; gap: 15px;">
-                        <button type="submit" name="go_to_form" class="rifat-btn">Post Data</button>
-                        <a href="http://localhost/wordpress/products/" class="rifat-btn">See Products</a>
-                    </form>
-                </div>
-                
-                <div class="rifat-card">
-                    <div class="rifat-card-title">Recent Activity</div>
-                    <div class="rifat-card-content">
-                        <ul>
-                            <li>Form submission completed on May 14</li>
-                            <li>New report generated on May 12</li>
-                            <li>Profile settings updated on May 10</li>
-                            <li>Document uploaded on May 8</li>
-                        </ul>
-                    </div>
-                </div> -->
+               
                 
                 <div class="rifat-card rifat-highlight-card">
                     <div class="rifat-card-title">You can do anything</div>

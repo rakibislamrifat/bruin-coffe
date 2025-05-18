@@ -167,7 +167,7 @@ if (isset($_POST['submit'])) {
 
             <button type="submit" name="submit" class="rifat-button">Create</button>
         </form>
-        <a href="index.php" class="rifat-back-link">Back to Orders</a>
+        <a href="../dashboard/dashboard.php" class="rifat-back-link">Back to Dashboard</a>
     </div>
 </body>
 </html>
