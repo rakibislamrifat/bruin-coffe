@@ -20,7 +20,7 @@ if ($user !== null) {
     $stmt->close();
 
     if ($email !== null) {
-        echo "User email: " . htmlspecialchars($email) . "<br>";
+        // echo " " ."<br>";
     } else {
         echo "User email not found.<br>";
     }
@@ -317,8 +317,8 @@ if (isset($_POST['add_cart'])) {
                             <p><?php echo $product['description']; ?></p>
                             <div class="product-cat mt-30 mb-30">
                                 <span>Category: </span>
-                                <a href="#">furniture,</a>
-                                <a href="#">decor</a>
+                                <span><?php echo $product['product_category']; ?></span>
+                                
                             </div>                            
                             <div class="product-details-action">
                             <form action="shop-details.php?id=<?php echo $product['id']; ?>" method="POST">

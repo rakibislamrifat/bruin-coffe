@@ -157,15 +157,7 @@
                                     <span class="rifat-qty me-2">
                                         <i class="fas fa-box me-1"></i> Qty: <?php echo $row['quantity']; ?>
                                     </span>
-                                    <?php
-                                    // Add status badge if it exists in your database
-                                    if (isset($row['status'])) {
-                                        $statusClass = ($row['status'] == 'Completed') ? 'bg-success' : 
-                                                     (($row['status'] == 'Pending') ? 'bg-warning' : 'bg-info');
-                                        echo '<span class="rifat-badge ' . $statusClass . '">' . 
-                                             htmlspecialchars($row['status']) . '</span>';
-                                    }
-                                    ?>
+                                    
                                 </div>
                                 
                                 <div class="d-flex justify-content-between">
