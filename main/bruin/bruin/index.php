@@ -89,7 +89,8 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                                 <a href="index.php">Home</a>
                                              
                                             </li>
-                                            <li><a href="about.html">About</a></li>        
+                                            <li><a href="about.html">About</a></li>      
+                                            <li><a href="all-product.php">Products</a></li>  
                                           
                                             <li><a href="contact.html">Contact</a></li> 
                                             <!-- if user is exist then show logout button or else show login button -->
@@ -148,7 +149,7 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
             <section id="home" class="slider-area fix p-relative">
                
                 <div class="slider-active" style="background: #101010;">
-				<div class="single-slider slider-bg d-flex align-items-center" style="background-image: url(img/slider/slider_bg_02.png); background-size: cover;">
+				<div class="single-slider slider-bg d-flex align-items-center" style="background-image: url(img/slider/cofee-1.jpg); background-size: cover;">
                         <div class="container">
                            <div class="row justify-content-center align-items-center">
                               
@@ -171,7 +172,7 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
                             </div>
                         </div>
                     </div>
-                    <div class="single-slider slider-bg d-flex align-items-center" style="background-image: url(img/slider/slider_bg.png); background-size: cover;">
+                    <div class="single-slider slider-bg d-flex align-items-center" style="background-image: url(img/slider/slider-rifat.jpg); background-size: cover;">
                         <div class="container">
                            <div class="row justify-content-center align-items-center">
                               

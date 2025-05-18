@@ -518,7 +518,7 @@ if (isset($_POST['cart_id'])) {
                     <i class="fas fa-shopping-basket"></i>
                     <h2>Your cart is empty</h2>
                     <p>Looks like you haven't added any products to your cart yet.</p>
-                    <a href="shop-details.php" class="rifat-btn">Explore Products</a>
+                    <a href="index.php" class="rifat-btn">Explore Products</a>
                 </div>
             <?php else: ?>
                 <div class="rifat-cart-table-container">
@@ -536,7 +536,8 @@ if (isset($_POST['cart_id'])) {
                             <?php foreach ($cartItems as $item): ?>
                                 <tr>
                                     <td data-label="Product" class="rifat-product-cell">
-                                        <img src="<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" class="rifat-product-img">
+                                        
+                                        <img src="../bruin/uploads/<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" class="rifat-product-img">
                                         <span class="rifat-product-name" style="margin-left:15px;"><?php echo htmlspecialchars($item['product_name']); ?></span>
                                     </td>
                                     <td data-label="Price" class="rifat-price-cell">$<?php echo number_format($item['product_price'], 2); ?></td>
@@ -550,7 +551,7 @@ if (isset($_POST['cart_id'])) {
                                     </td>
                                     <td data-label="Total" class="rifat-total-cell">$<?php echo number_format($item['product_price'] * $item['product_quantity'], 2); ?></td>
                                     <td data-label="Action">
-                                        <form method="post" action="remove_from_cart.php">
+                                        <form method="post" action="remove-cart.php">
                                             <input type="hidden" name="cart_id" value="<?php echo $item['id']; ?>">
                                             <button type="submit" class="rifat-remove-btn"><i class="fas fa-trash-alt"></i> Remove</button>
                                         </form>
@@ -582,7 +583,7 @@ if (isset($_POST['cart_id'])) {
                 </div>
             <?php endif; ?>
             
-            <a href="../products.php" class="rifat-back-link">
+            <a href="index.php" class="rifat-back-link">
                 <i class="fas fa-arrow-left"></i> Continue Shopping
             </a>
             
@@ -591,7 +592,7 @@ if (isset($_POST['cart_id'])) {
                 <i class="fas fa-user-lock"></i>
                 <h2>Please log in to view your cart</h2>
                 <p>You need to be logged in to access your shopping cart.</p>
-                <a href="../login.php" class="rifat-btn">Log In</a>
+                <a href="/auth/login.php" class="rifat-btn">Log In</a>
             </div>
         <?php endif; ?>
     </div>

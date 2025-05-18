@@ -115,7 +115,7 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
             overflow: hidden;
         }
         
-        .rifat-menu-item::before {
+        /* .rifat-menu-item::before {
             content: '';
             position: absolute;
             left: 0;
@@ -126,7 +126,7 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
             transition: var(--transition);
             opacity: 0;
             z-index: -1;
-        }
+        } */
         
         .rifat-menu-item:hover {
             color: #6F3727;
@@ -139,8 +139,12 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
         
         .rifat-menu-item.active {
             background: var(--gradient);
-            color: var(--white);
-            box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
+            color: white;
+            box-shadow: 0 4px 15px ;
+        }
+        .rifat-menu-text{
+            color: #6F3727 !important;
+            text-decoration: none;
         }
         
         .rifat-menu-icon {
@@ -515,36 +519,17 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
             </div>
             
             <ul class="rifat-menu">
-                <li class="rifat-menu-item active">
+                <li class="rifat-menu-item ">
                     <span class="rifat-menu-icon"><i class="fas fa-home"></i></span>
-                    <span>Dashboard</span>
+                    <span class="rifat-menu-text">Dashboard</span>
                 </li>
-                <li class="rifat-menu-item active">
+                <li class="rifat-menu-item rifat-menu-white ">
                     <a href="../my-cart.php">
                     <span class="rifat-menu-icon"><i class="fas fa-shopping-cart"></i></span>
-                    <span>My Cart</span>
+                    <span class="rifat-menu-text">My Cart</span>
                     </a>
                 </li>
-                <!-- <li class="rifat-menu-item">
-                    <span class="rifat-menu-icon"><i class="fas fa-file-alt"></i></span>
-                    <span>Forms</span>
-                </li>
-                <li class="rifat-menu-item">
-                    <span class="rifat-menu-icon"><i class="fas fa-chart-pie"></i></span>
-                    <span>Reports</span>
-                </li>
-                <li class="rifat-menu-item">
-                    <span class="rifat-menu-icon"><i class="fas fa-calendar-alt"></i></span>
-                    <span>Calendar</span>
-                </li>
-                <li class="rifat-menu-item">
-                    <span class="rifat-menu-icon"><i class="fas fa-cog"></i></span>
-                    <span>Settings</span>
-                </li>
-                <li class="rifat-menu-item">
-                    <span class="rifat-menu-icon"><i class="fas fa-question-circle"></i></span>
-                    <span>Help</span>
-                </li> -->
+                
             </ul>
             
             <div class="rifat-user-profile">

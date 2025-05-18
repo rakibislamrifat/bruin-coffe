@@ -118,6 +118,14 @@ if (isset($_POST['add_cart'])) {
         <link rel="stylesheet" href="css/default.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/responsive.css">
+        <style>
+            
+            .product-large-img img{
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+            }
+        </style>
     </head>
     <body>
           <!-- header -->

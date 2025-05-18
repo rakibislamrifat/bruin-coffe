@@ -86,7 +86,7 @@
             position: relative;
             margin-bottom: 2.5rem;
             padding-bottom: 1rem;
-            color: #2c3e50;
+            color: #6F3727;
             font-weight: 600;
         }
         .rifat-section-title:after {
