@@ -66,106 +66,221 @@ if (isset($_POST['cart_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Cart</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        :root {
+            --primary: #6f3727;
+            --primary-light: #8a5142;
+            --primary-dark: #5a2c1f;
+            --accent: #c87d4d;
+            --light: #f8f5f3;
+            --dark: #2c2521;
+            --gray: #7d7d7d;
+            --light-gray: #e9e9e9;
+            --white: #ffffff;
+            --shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5;
-            color: #333;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
         }
         
         .rifat-container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px;
+            padding: 2rem;
         }
         
-        .rifat-heading {
-            color: #2c3e50;
-            margin-bottom: 30px;
+        .rifat-page-header {
+            margin-bottom: 2.5rem;
+        }
+        
+        .rifat-page-title {
+            font-size: 2rem;
             font-weight: 600;
-            border-bottom: 2px solid #3498db;
-            padding-bottom: 10px;
-        }
-        
-        .rifat-cart-empty {
-            background-color: #fff;
-            padding: 40px;
-            text-align: center;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-        
-        .rifat-cart-empty i {
-            font-size: 48px;
-            color: #bdc3c7;
-            margin-bottom: 20px;
-        }
-        
-        .rifat-cart-empty h2 {
-            color: #7f8c8d;
-            margin-bottom: 20px;
-        }
-        
-        .rifat-cart-empty a {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.5px;
+            position: relative;
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: background-color 0.3s;
         }
         
-        .rifat-cart-empty a:hover {
-            background-color: #2980b9;
+        .rifat-page-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 60px;
+            height: 3px;
+            background-color: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .rifat-user-info-card {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.25rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--primary);
+            display: flex;
+            align-items: center;
+        }
+        
+        .rifat-user-info-card i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-right: 1rem;
+        }
+        
+        .rifat-user-info-card p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+        
+        .rifat-user-info-card strong {
+            color: var(--primary);
+        }
+        
+        .rifat-empty-cart {
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .rifat-empty-cart i {
+            font-size: 3.5rem;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .rifat-empty-cart h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+        
+        .rifat-empty-cart p {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+        
+        .rifat-btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            text-align: center;
+        }
+        
+        .rifat-btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(111, 55, 39, 0.15);
+        }
+        
+        .rifat-btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+        
+        .rifat-btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+        
+        .rifat-cart-table-container {
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 2rem;
         }
         
         .rifat-cart-table {
             width: 100%;
             border-collapse: collapse;
-            background-color: white;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
         }
         
         .rifat-cart-table th {
-            background-color: #3498db;
-            color: white;
+            background-color: var(--primary);
+            color: var(--white);
             text-align: left;
-            padding: 15px;
+            padding: 1rem 1.5rem;
             font-weight: 500;
+            font-size: 0.95rem;
         }
         
         .rifat-cart-table td {
-            padding: 15px;
-            border-bottom: 1px solid #ecf0f1;
+            padding: 1.25rem 1.5rem;
+            border-bottom: 1px solid var(--light-gray);
             vertical-align: middle;
+            font-size: 0.95rem;
         }
         
         .rifat-cart-table tr:last-child td {
             border-bottom: none;
         }
         
+        .rifat-product-cell {
+            display: flex;
+            align-items: center;
+        }
+        
         .rifat-product-img {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             object-fit: cover;
-            border-radius: 4px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .rifat-product-name {
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .rifat-price-cell {
+            font-weight: 500;
+            color: var(--primary);
         }
         
         .rifat-quantity-control {
             display: flex;
             align-items: center;
+            background-color: var(--light);
+            border-radius: 6px;
+            padding: 0.2rem;
+            width: fit-content;
         }
         
         .rifat-quantity-btn {
-            background-color: #f1f1f1;
-            border: none;
+            background-color: var(--white);
+            border: 1px solid var(--light-gray);
             width: 30px;
             height: 30px;
             border-radius: 4px;
@@ -173,212 +288,310 @@ if (isset($_POST['cart_id'])) {
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+            font-size: 1rem;
         }
         
         .rifat-quantity-btn:hover {
-            background-color: #e0e0e0;
+            background-color: var(--primary-light);
+            color: var(--white);
+            border-color: var(--primary-light);
         }
         
         .rifat-quantity-input {
             width: 40px;
             height: 30px;
             text-align: center;
-            border: 1px solid #ddd;
-            margin: 0 8px;
+            border: 1px solid var(--light-gray);
+            margin: 0 0.5rem;
             border-radius: 4px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+        
+        .rifat-total-cell {
+            font-weight: 600;
+            color: var(--primary);
         }
         
         .rifat-remove-btn {
-            background-color: #e74c3c;
-            color: white;
-            border: none;
-            padding: 8px 12px;
-            border-radius: 4px;
+            background-color: #f8e9e7;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
         
         .rifat-remove-btn:hover {
-            background-color: #c0392b;
+            background-color: var(--primary);
+            color: var(--white);
         }
         
         .rifat-cart-summary {
-            margin-top: 30px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: var(--white);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .rifat-summary-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.75rem;
+            border-bottom: 2px solid var(--light-gray);
         }
         
         .rifat-summary-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 15px;
-            padding-bottom: 15px;
-            border-bottom: 1px solid #ecf0f1;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+            font-size: 0.95rem;
         }
         
-        .rifat-summary-row:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
-            border-bottom: none;
-            font-weight: bold;
-            font-size: 1.2em;
-            color: #2c3e50;
+        .rifat-summary-row:last-of-type {
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid var(--light-gray);
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+        
+        .rifat-summary-label {
+            color: var(--gray);
+        }
+        
+        .rifat-summary-value {
+            font-weight: 500;
         }
         
         .rifat-checkout-btn {
             display: block;
             width: 100%;
-            padding: 15px;
-            background-color: #2ecc71;
-            color: white;
+            padding: 1rem;
+            background-color: var(--primary);
+            color: var(--white);
             border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: 500;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 20px;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+            text-align: center;
         }
         
         .rifat-checkout-btn:hover {
-            background-color: #27ae60;
+            background-color: var(--primary-dark);
         }
         
-        .rifat-user-info {
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: #e8f4fc;
-            border-radius: 8px;
-            border-left: 4px solid #3498db;
-        }
-        
-        .rifat-back-to-shop {
-            display: inline-block;
-            margin-top: 20px;
-            color: #3498db;
+        .rifat-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
             text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+        
+        .rifat-back-link:hover {
+            color: var(--primary-dark);
+        }
+        
+        .rifat-back-link i {
+            font-size: 0.9rem;
+        }
+        
+        .rifat-badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            background-color: #f3f3f3;
+            color: var(--gray);
+            border-radius: 50px;
+            font-size: 0.75rem;
             font-weight: 500;
         }
         
-        .rifat-back-to-shop:hover {
-            text-decoration: underline;
+        .rifat-badge-free {
+            background-color: #e7f5eb;
+            color: #28a745;
+        }
+        
+        @media (max-width: 992px) {
+            .rifat-container {
+                padding: 1.5rem;
+            }
         }
         
         @media (max-width: 768px) {
-            .rifat-product-img {
-                width: 60px;
-                height: 60px;
+            .rifat-cart-table thead {
+                display: none;
             }
             
-            .rifat-cart-table th, .rifat-cart-table td {
-                padding: 10px;
+            .rifat-cart-table tbody, .rifat-cart-table tr, .rifat-cart-table td {
+                display: block;
+                width: 100%;
             }
             
-            .rifat-quantity-btn, .rifat-quantity-input {
-                width: 25px;
-                height: 25px;
+            .rifat-cart-table tr {
+                margin-bottom: 1rem;
+                border-bottom: 2px solid var(--light-gray);
+                padding-bottom: 1rem;
+            }
+            
+            .rifat-cart-table tr:last-child {
+                margin-bottom: 0;
+                border-bottom: none;
+            }
+            
+            .rifat-cart-table td {
+                text-align: right;
+                padding: 0.75rem 1rem;
+                position: relative;
+                border-bottom: 1px solid var(--light-gray);
+            }
+            
+            .rifat-cart-table td:last-child {
+                border-bottom: none;
+            }
+            
+            .rifat-cart-table td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 1rem;
+                width: 45%;
+                white-space: nowrap;
+                font-weight: 600;
+                text-align: left;
+            }
+            
+            .rifat-product-cell {
+                justify-content: flex-end;
+            }
+            
+            .rifat-quantity-control {
+                margin-left: auto;
             }
             
             .rifat-remove-btn {
-                padding: 6px 10px;
-                font-size: 12px;
+                margin-left: auto;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .rifat-container {
+                padding: 1rem;
+            }
+            
+            .rifat-page-title {
+                font-size: 1.75rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="rifat-container">
-        <h1 class="rifat-heading">My Cart</h1>
+        <div class="rifat-page-header">
+            <h1 class="rifat-page-title">Shopping Cart</h1>
+        </div>
         
         <?php if ($user !== null && $email !== null): ?>
-            <div class="rifat-user-info">
-                <p><strong>Logged in as:</strong> <?php echo htmlspecialchars($user); ?> (<?php echo htmlspecialchars($email); ?>)</p>
+            <div class="rifat-user-info-card">
+                <i class="fas fa-user-circle"></i>
+                <p><strong>Welcome, <?php echo htmlspecialchars(strtoupper($user)); ?></strong></p>
             </div>
             
             <?php if (empty($cartItems)): ?>
-                <div class="rifat-cart-empty">
-                    <i class="fas fa-shopping-cart"></i>
+                <div class="rifat-empty-cart">
+                    <i class="fas fa-shopping-basket"></i>
                     <h2>Your cart is empty</h2>
                     <p>Looks like you haven't added any products to your cart yet.</p>
-                    <a href="shop-details.php">Continue Shopping</a>
+                    <a href="shop-details.php" class="rifat-btn">Explore Products</a>
                 </div>
             <?php else: ?>
-                <table class="rifat-cart-table">
-                    <thead>
-                        <tr>
-                            <th>Product</th>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
-                            <th>Total</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php foreach ($cartItems as $item): ?>
+                <div class="rifat-cart-table-container">
+                    <table class="rifat-cart-table">
+                        <thead>
                             <tr>
-                                <td>
-                                    
-                                    <img src="<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" class="rifat-product-img">
-                                    <!-- after that product image not showing -->
-                                    
-
-                                </td>
-                                <td><?php echo htmlspecialchars($item['product_name']); ?></td>
-                                <td>$<?php echo number_format($item['product_price'], 2); ?></td>
-                                <td>
-                                    <div class="rifat-quantity-control">
-                                        <form method="post" action="my-cart.php">
+                                <th>Product</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($cartItems as $item): ?>
+                                <tr>
+                                    <td data-label="Product" class="rifat-product-cell">
+                                        <img src="<?php echo htmlspecialchars($item['product_image']); ?>" alt="<?php echo htmlspecialchars($item['product_name']); ?>" class="rifat-product-img">
+                                        <span class="rifat-product-name" style="margin-left:15px;"><?php echo htmlspecialchars($item['product_name']); ?></span>
+                                    </td>
+                                    <td data-label="Price" class="rifat-price-cell">$<?php echo number_format($item['product_price'], 2); ?></td>
+                                    <td data-label="Quantity">
+                                        <form method="post" action="my-cart.php" class="rifat-quantity-control">
                                             <input type="hidden" name="cart_id" value="<?php echo $item['id']; ?>">
                                             <button type="submit" name="decrease" class="rifat-quantity-btn">-</button>
                                             <input type="text" class="rifat-quantity-input" value="<?php echo $item['product_quantity']; ?>" readonly>
                                             <button type="submit" name="increase" class="rifat-quantity-btn">+</button>
                                         </form>
-                                    </div>
-                                </td>
-                                <td>$<?php echo number_format($item['product_price'] * $item['product_quantity'], 2); ?></td>
-                                <td>
-                                    <form method="post" action="remove_from_cart.php">
-                                        <input type="hidden" name="cart_id" value="<?php echo $item['id']; ?>">
-                                        <button type="submit" class="rifat-remove-btn">Remove</button>
-                                    </form>
-                                </td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </tbody>
-                </table>
+                                    </td>
+                                    <td data-label="Total" class="rifat-total-cell">$<?php echo number_format($item['product_price'] * $item['product_quantity'], 2); ?></td>
+                                    <td data-label="Action">
+                                        <form method="post" action="remove_from_cart.php">
+                                            <input type="hidden" name="cart_id" value="<?php echo $item['id']; ?>">
+                                            <button type="submit" class="rifat-remove-btn"><i class="fas fa-trash-alt"></i> Remove</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
                 
                 <div class="rifat-cart-summary">
+                    <h3 class="rifat-summary-title">Order Summary</h3>
                     <div class="rifat-summary-row">
-                        <span>Subtotal</span>
-                        <span>$<?php echo number_format($totalPrice, 2); ?></span>
+                        <span class="rifat-summary-label">Subtotal</span>
+                        <span class="rifat-summary-value">$<?php echo number_format($totalPrice, 2); ?></span>
                     </div>
                     <div class="rifat-summary-row">
-                        <span>Shipping</span>
-                        <span>Free</span>
+                        <span class="rifat-summary-label">Shipping</span>
+                        <span class="rifat-summary-value"><span class="rifat-badge rifat-badge-free">Free</span></span>
                     </div>
                     <div class="rifat-summary-row">
-                        <span>Total</span>
-                        <span>$<?php echo number_format($totalPrice, 2); ?></span>
+                        <span class="rifat-summary-label">Total</span>
+                        <span class="rifat-summary-value">$<?php echo number_format($totalPrice, 2); ?></span>
                     </div>
                     
-                    <button class="rifat-checkout-btn">Proceed to Checkout</button>
+                    <button class="rifat-checkout-btn">
+                        <i class="fas fa-lock" style="margin-right:8px;"></i> Secure Checkout
+                    </button>
                 </div>
             <?php endif; ?>
             
-            <a href="../products.php" class="rifat-back-to-shop">
+            <a href="../products.php" class="rifat-back-link">
                 <i class="fas fa-arrow-left"></i> Continue Shopping
             </a>
             
         <?php else: ?>
-            <div class="rifat-cart-empty">
-                <i class="fas fa-exclamation-circle"></i>
+            <div class="rifat-empty-cart">
+                <i class="fas fa-user-lock"></i>
                 <h2>Please log in to view your cart</h2>
                 <p>You need to be logged in to access your shopping cart.</p>
-                <a href="../login.php">Log In</a>
+                <a href="../login.php" class="rifat-btn">Log In</a>
             </div>
         <?php endif; ?>
     </div>
