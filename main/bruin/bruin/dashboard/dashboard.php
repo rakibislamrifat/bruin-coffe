@@ -523,12 +523,7 @@ $users = mysqli_fetch_all($result, MYSQLI_ASSOC);
                     <span class="rifat-menu-icon"><i class="fas fa-home"></i></span>
                     <span class="rifat-menu-text">Dashboard</span>
                 </li>
-                <li class="rifat-menu-item rifat-menu-white ">
-                    <a href="../my-cart.php">
-                    <span class="rifat-menu-icon"><i class="fas fa-shopping-cart"></i></span>
-                    <span class="rifat-menu-text">My Cart</span>
-                    </a>
-                </li>
+                
                 
             </ul>
             

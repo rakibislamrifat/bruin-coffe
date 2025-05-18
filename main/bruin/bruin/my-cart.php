@@ -99,7 +99,7 @@ if (isset($_POST['cart_id'])) {
         
         .rifat-container {
             max-width: 1200px;
-            margin: 0 auto;
+            margin: 85px auto;
             padding: 2rem;
         }
         
@@ -502,10 +502,33 @@ if (isset($_POST['cart_id'])) {
     </style>
 </head>
 <body>
+    <?php include 'header.php'; ?>
+    <section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrc-bg.jpg)">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="breadcrumb-wrap text-center">
+                                <div class="breadcrumb-title">
+                                    <h2>Cart</h2>    
+                                    <div class="breadcrumb-wrap">
+                              
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">About</li>
+                                        <li class="breadcrumb-item"><a href="../bruin/dashboard/dashboard.php">Dashboard</a></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
     <div class="rifat-container">
-        <div class="rifat-page-header">
-            <h1 class="rifat-page-title">Shopping Cart</h1>
-        </div>
+        
         
         <?php if ($user !== null && $email !== null): ?>
             <div class="rifat-user-info-card">
@@ -596,5 +619,6 @@ if (isset($_POST['cart_id'])) {
             </div>
         <?php endif; ?>
     </div>
+    <?php include 'footer.php'; ?>
 </body>
 </html>

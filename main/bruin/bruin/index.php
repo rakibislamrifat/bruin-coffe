@@ -91,7 +91,8 @@ $products = mysqli_fetch_all($result, MYSQLI_ASSOC);
                                             </li>
                                             <li><a href="about.html">About</a></li>      
                                             <li><a href="all-product.php">Products</a></li>  
-                                          
+                                            <li><a href="my-cart.php">Cart</a></li>
+
                                             <li><a href="contact.html">Contact</a></li> 
                                             <!-- if user is exist then show logout button or else show login button -->
                                          

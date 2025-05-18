@@ -1,3 +1,10 @@
+<?php 
+session_start();
+include '../bruin/db/db.php';
+$user = $_SESSION['user'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,6 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>All Products</title>
     <style>
+        
         * {
             margin: 0;
             padding: 0;
@@ -14,15 +22,16 @@
         
         body {
             background-color: #f8f4f1;
-            padding: 20px;
+            
         }
         
         .products-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 20px;
+            max-width: auto;
+            margin: 110px auto;
         }
         
         .product {
@@ -151,8 +160,35 @@
 
 <body>
 
+<?php include 'header.php'; ?>
+
+<section class="breadcrumb-area d-flex align-items-center" style="background-image:url(img/bg/bdrc-bg.jpg)">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-xl-12 col-lg-12">
+                            <div class="breadcrumb-wrap text-center">
+                                <div class="breadcrumb-title">
+                                    <h2>All Product</h2>    
+                                    <div class="breadcrumb-wrap">
+                              
+                                <nav aria-label="breadcrumb">
+                                    <ol class="breadcrumb">
+                                        <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+                                        <li class="breadcrumb-item active" aria-current="page">About</li>
+                                        <li class="breadcrumb-item"><a href="../bruin/dashboard/dashboard.php">Dashboard</a></li>
+                                    </ol>
+                                </nav>
+                            </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </section>
+
 <?php 
-include '../bruin/db/db.php';
+
 
 
 
@@ -160,7 +196,10 @@ include '../bruin/db/db.php';
 $sql = "SELECT * FROM orders";
 $result = mysqli_query($conn, $sql);
 
+
+
 echo "<div class='products-container'>";
+
 
 // display all products
 while ($row = mysqli_fetch_assoc($result)) {
@@ -194,7 +233,9 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 echo "</div>";
+
 ?>
 
+<?php include 'footer.php'; ?>
 </body>
 </html>
