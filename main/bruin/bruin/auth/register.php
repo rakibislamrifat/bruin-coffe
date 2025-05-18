@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($conn->query($sql)) {
                 $_SESSION['user'] = $username;
-                header("Location: ../index.html");
+                header("Location: ../index.php");
                 exit;
             } else {
                 $error = "Error: " . $conn->error;

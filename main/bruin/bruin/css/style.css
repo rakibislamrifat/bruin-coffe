@@ -508,6 +508,7 @@ top: -3px;
 /* .main-menu ul li:last-child a::after,.main-menu .has-sub ul li a::after {
   display: none;
 } */
+ 
 .main-menu ul li:first-child {
 	margin-left: 0;
 }
@@ -10968,3 +10969,7 @@ color: #fff;
 .footer-top.wpding {
     background: #010c26;
 }
+
+
+
+/* Mine */

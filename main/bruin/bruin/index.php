@@ -87,24 +87,31 @@ $user = $_SESSION['user'] ?? null;
                                              
                                             </li>
                                             <li><a href="about.html">About</a></li>        
-                                            
-                                            
-
-
-                                            
-                                            
-                                            
+                                          
                                             <li><a href="contact.html">Contact</a></li> 
-                                            <!-- if user is exist then show logout button -->
+                                            <!-- if user is exist then show logout button or else show login button -->
+                                         
+                                            
                                             <?php if(isset($_SESSION['user'])){ ?>
                                                 <li><a href="../bruin/auth/logout.php" <?php echo $user; ?>>
                                                     Logout</a></li>
+                                            <?php } else { ?>
+                                                <li><a href="../bruin/auth/login.php">Login</a></li>
                                             <?php } ?>
-                                            <!-- if user is logged in, show dashboard button -->
-                                                <?php if(isset($_SESSION['user'])){ ?>
-                                                    <li><a href="../bruin/dashboard/dashboard.php">
-                                                        Dashboard</a></li>
-                                                <?php } ?>
+                                            <!-- show user name in a button -->
+                                            <li><a <?php echo $user; ?>>
+                                                <?php echo $user; ?></a></li>
+                                                
+                                            <!-- if user is logged in, show go to dashboard button -->
+                                        
+
+                                            
+                                            <?php if ($user) { ?>
+    <li><a href="../bruin/dashboard/dashboard.php">Dashboard</a></li>
+<?php } ?>
+                                           
+                                            
+                                                
                                         </ul>
                                     </nav>
                                 </div>
