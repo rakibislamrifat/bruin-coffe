@@ -8,6 +8,7 @@ if (!isset($_SESSION['user'])) {
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,19 +24,19 @@ if (!isset($_SESSION['user'])) {
             padding: 0;
             box-sizing: border-box;
         }
-        
+
         :root {
             --primary: #2c3e50;
-            --primary-light: #34495e;
+            --primary-light: #6F3727;
             --accent: #9b59b6;
-            --text: #2c3e50;
+            --text: #6F3727;
             --text-light: #7f8c8d;
             --bg-light: #f8f9fa;
             --white: #ffffff;
             --shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
             --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.1);
-            --gradient: linear-gradient(135deg, #9b59b6, #8e44ad);
-            --gradient-light: linear-gradient(135deg, rgba(155, 89, 182, 0.8), rgba(142, 68, 173, 0.8));
+            --gradient: linear-gradient(135deg, #6F3727, #8e44ad);
+            --gradient-light: linear-gradient(135deg, #6F3727, rgba(142, 68, 173, 0.8));
             --border-radius: 12px;
             --transition: all 0.3s ease;
         }
@@ -53,12 +54,12 @@ if (!isset($_SESSION['user'])) {
             font-weight: 700;
         }
         
-        .jahbulonn-dashboard {
+        .rifat-dashboard {
             display: flex;
             min-height: 100vh;
         }
         
-        .jahbulonn-sidebar {
+        .rifat-sidebar {
             width: 280px;
             background-color: var(--white);
             padding: 40px 25px;
@@ -68,31 +69,31 @@ if (!isset($_SESSION['user'])) {
             flex-direction: column;
         }
         
-        .jahbulonn-logo {
+        .rifat-logo {
             display: flex;
             align-items: center;
             margin-bottom: 50px;
         }
         
-        .jahbulonn-logo-icon {
+        .rifat-logo-icon {
             font-size: 28px;
             margin-right: 15px;
             color: var(--accent);
         }
         
-        .jahbulonn-logo-text {
+        .rifat-logo-text {
             font-family: 'Playfair Display', serif;
             font-size: 24px;
             font-weight: 700;
             color: var(--primary);
         }
         
-        .jahbulonn-menu {
+        .rifat-menu {
             list-style-type: none;
             margin-bottom: auto;
         }
         
-        .jahbulonn-menu-item {
+        .rifat-menu-item {
             padding: 15px;
             border-radius: var(--border-radius);
             margin-bottom: 10px;
@@ -105,7 +106,7 @@ if (!isset($_SESSION['user'])) {
             overflow: hidden;
         }
         
-        .jahbulonn-menu-item::before {
+        .rifat-menu-item::before {
             content: '';
             position: absolute;
             left: 0;
@@ -118,29 +119,29 @@ if (!isset($_SESSION['user'])) {
             z-index: -1;
         }
         
-        .jahbulonn-menu-item:hover {
-            color: rgba(142, 68, 173, 0.8);
+        .rifat-menu-item:hover {
+            color: #6F3727;
         }
         
-        .jahbulonn-menu-item:hover::before {
+        .rifat-menu-item:hover::before {
             width: 100%;
             opacity: 1;
         }
         
-        .jahbulonn-menu-item.active {
+        .rifat-menu-item.active {
             background: var(--gradient);
             color: var(--white);
             box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
         }
         
-        .jahbulonn-menu-icon {
+        .rifat-menu-icon {
             margin-right: 15px;
             font-size: 18px;
             width: 20px;
             text-align: center;
         }
         
-        .jahbulonn-user-profile {
+        .rifat-user-profile {
             display: flex;
             align-items: center;
             padding-top: 20px;
@@ -148,7 +149,7 @@ if (!isset($_SESSION['user'])) {
             margin-top: 20px;
         }
         
-        .jahbulonn-user-avatar {
+        .rifat-user-avatar {
             width: 40px;
             height: 40px;
             border-radius: 50%;
@@ -161,42 +162,42 @@ if (!isset($_SESSION['user'])) {
             margin-right: 12px;
         }
         
-        .jahbulonn-user-info {
+        .rifat-user-info {
             font-size: 14px;
         }
         
-        .jahbulonn-user-name {
+        .rifat-user-name {
             font-weight: 600;
             color: var(--primary);
         }
         
-        .jahbulonn-user-role {
+        .rifat-user-role {
             font-size: 12px;
             color: var(--text-light);
         }
         
-        .jahbulonn-main-content {
+        .rifat-main-content {
             flex: 1;
             padding: 40px 50px;
         }
         
-        .jahbulonn-header {
+        .rifat-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 40px;
         }
         
-        .jahbulonn-welcome {
+        .rifat-welcome {
             font-family: 'Playfair Display', serif;
             font-size: 32px;
             color: var(--primary);
         }
         
-        .jahbulonn-logout-button {
+        .rifat-logout-button {
             display: inline-block;
             padding: 10px 24px;
-            background: linear-gradient(135deg, #00c6ff, #0072ff);
+            background: linear-gradient(135deg, #6F3727, #8e44ad);
             color: #ffffff;
             text-decoration: none;
             border: none;
@@ -208,21 +209,21 @@ if (!isset($_SESSION['user'])) {
             transition: all 0.3s ease;
         }
 
-        .jahbulonn-logout-button:hover {
+        .rifat-logout-button:hover {
             background: linear-gradient(135deg, #0072ff, #00c6ff);
             box-shadow: 0 8px 16px rgba(0, 114, 255, 0.35);
             transform: translateY(-3px);
             text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
         
-        .jahbulonn-cards-container {
+        .rifat-cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
         }
         
-        .jahbulonn-card {
+        .rifat-card {
             background-color: var(--white);
             border-radius: var(--border-radius);
             padding: 30px;
@@ -232,7 +233,7 @@ if (!isset($_SESSION['user'])) {
             overflow: hidden;
         }
         
-        .jahbulonn-card::after {
+        .rifat-card::after {
             content: '';
             position: absolute;
             top: 0;
@@ -243,16 +244,16 @@ if (!isset($_SESSION['user'])) {
             transition: var(--transition);
         }
         
-        .jahbulonn-card:hover {
+        .rifat-card:hover {
             transform: translateY(-5px);
             box-shadow: var(--shadow-hover);
         }
         
-        .jahbulonn-card:hover::after {
+        .rifat-card:hover::after {
             width: 100%;
         }
         
-        .jahbulonn-card-title {
+        .rifat-card-title {
             font-family: 'Playfair Display', serif;
             font-size: 22px;
             margin-bottom: 20px;
@@ -261,24 +262,24 @@ if (!isset($_SESSION['user'])) {
             display: inline-block;
         }
         
-        .jahbulonn-card-content {
+        .rifat-card-content {
             margin-bottom: 25px;
             color: var(--text-light);
             font-size: 15px;
             line-height: 1.7;
         }
         
-        .jahbulonn-card-content ul {
+        .rifat-card-content ul {
             list-style-position: inside;
             margin-left: 5px;
         }
         
-        .jahbulonn-card-content li {
+        .rifat-card-content li {
             margin-bottom: 8px;
             position: relative;
         }
         
-        .jahbulonn-btn {
+        .rifat-btn {
             display: inline-block;
             background: var(--gradient);
             color: var(--white);
@@ -295,17 +296,18 @@ if (!isset($_SESSION['user'])) {
             box-shadow: 0 4px 15px rgba(155, 89, 182, 0.3);
         }
         
-        .jahbulonn-btn:hover {
+        .rifat-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 6px 20px rgba(155, 89, 182, 0.4);
         }
         
-        .jahbulonn-btn-large {
+        .rifat-btn-large {
+            font-family: 'Raleway', sans-serif;
             font-size: 16px;
             padding: 15px 35px;
         }
         
-        .jahbulonn-highlight-card {
+        .rifat-highlight-card {
             grid-column: span 2;
             background: linear-gradient(135deg, rgba(155, 89, 182, 0.05), rgba(142, 68, 173, 0.1));
             border: 1px solid rgba(155, 89, 182, 0.1);
@@ -317,27 +319,27 @@ if (!isset($_SESSION['user'])) {
             padding: 50px;
         }
         
-        .jahbulonn-highlight-card .jahbulonn-card-title {
+        .rifat-highlight-card .rifat-card-title {
             color: var(--primary);
             font-size: 28px;
             margin-bottom: 25px;
         }
         
-        .jahbulonn-highlight-card .jahbulonn-card-content {
+        .rifat-highlight-card .rifat-card-content {
             margin-bottom: 30px;
             font-size: 16px;
             max-width: 700px;
             color: var(--text);
         }
         
-        .jahbulonn-stats-row {
+        .rifat-stats-row {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             margin-bottom: 40px;
         }
         
-        .jahbulonn-stat-card {
+        .rifat-stat-card {
             background-color: var(--white);
             border-radius: var(--border-radius);
             padding: 25px;
@@ -346,36 +348,36 @@ if (!isset($_SESSION['user'])) {
             align-items: center;
         }
         
-        .jahbulonn-stat-icon {
+        .rifat-stat-icon {
             width: 60px;
             height: 60px;
             border-radius: 50%;
-            background: rgba(155, 89, 182, 0.1);
+            background: #6F3727;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 20px;
-            color: var(--accent);
+            color: white;
             font-size: 24px;
         }
         
-        .jahbulonn-stat-info {
+        .rifat-stat-info {
             flex: 1;
         }
         
-        .jahbulonn-stat-value {
+        .rifat-stat-value {
             font-size: 24px;
             font-weight: 700;
             color: var(--primary);
             font-family: 'Playfair Display', serif;
         }
         
-        .jahbulonn-stat-label {
+        .rifat-stat-label {
             font-size: 14px;
             color: var(--text-light);
         }
         
-        .jahbulonn-mobile-menu-toggle {
+        .rifat-mobile-menu-toggle {
             display: none;
             font-size: 24px;
             color: var(--primary);
@@ -385,7 +387,7 @@ if (!isset($_SESSION['user'])) {
             margin-right: 15px;
         }
         
-        .jahbulonn-mobile-menu-backdrop {
+        .rifat-mobile-menu-backdrop {
             position: fixed;
             top: 0;
             left: 0;
@@ -396,22 +398,22 @@ if (!isset($_SESSION['user'])) {
             display: none;
         }
         
-        .jahbulonn-mobile-menu-backdrop.active {
+        .rifat-mobile-menu-backdrop.active {
             display: block;
         }
         
         @media (max-width: 992px) {
-            .jahbulonn-stats-row {
+            .rifat-stats-row {
                 grid-template-columns: 1fr 1fr;
             }
         }
         
         @media (max-width: 768px) {
-            .jahbulonn-dashboard {
+            .rifat-dashboard {
                 flex-direction: column;
             }
             
-            .jahbulonn-sidebar {
+            .rifat-sidebar {
                 width: 100%;
                 padding: 20px;
                 position: fixed;
@@ -422,16 +424,16 @@ if (!isset($_SESSION['user'])) {
                 transition: var(--transition);
             }
             
-            .jahbulonn-sidebar.active {
+            .rifat-sidebar.active {
                 left: 0;
             }
             
-            .jahbulonn-main-content {
+            .rifat-main-content {
                 padding: 30px 20px;
                 margin-top: 60px;
             }
             
-            .jahbulonn-mobile-menu-toggle {
+            .rifat-mobile-menu-toggle {
                 display: block;
                 position: fixed;
                 top: 15px;
@@ -447,20 +449,20 @@ if (!isset($_SESSION['user'])) {
                 box-shadow: var(--shadow);
             }
             
-            .jahbulonn-cards-container {
+            .rifat-cards-container {
                 grid-template-columns: 1fr;
             }
             
-            .jahbulonn-highlight-card {
+            .rifat-highlight-card {
                 grid-column: span 1;
                 padding: 30px 20px;
             }
             
-            .jahbulonn-stats-row {
+            .rifat-stats-row {
                 grid-template-columns: 1fr;
             }
             
-            .jahbulonn-welcome {
+            .rifat-welcome {
                 font-size: 24px;
             }
         }
@@ -486,117 +488,118 @@ if (!isset($_SESSION['user'])) {
     $user_initials = "RF";
     ?>
 
-    <div class="jahbulonn-dashboard">
+    <div class="rifat-dashboard">
         <!-- Mobile Menu Toggle -->
-        <button id="jahbulonn-mobile-menu-toggle" class="jahbulonn-mobile-menu-toggle">
+        <button id="rifat-mobile-menu-toggle" class="rifat-mobile-menu-toggle">
             <i class="fas fa-bars"></i>
         </button>
         
         <!-- Mobile Menu Backdrop -->
-        <div id="jahbulonn-mobile-menu-backdrop" class="jahbulonn-mobile-menu-backdrop"></div>
+        <div id="rifat-mobile-menu-backdrop" class="rifat-mobile-menu-backdrop"></div>
         
-        <div id="jahbulonn-sidebar" class="jahbulonn-sidebar">
-            <div class="jahbulonn-logo">
-                <div class="jahbulonn-logo-icon">
+        <div id="rifat-sidebar" class="rifat-sidebar">
+            <div class="rifat-logo">
+                <div class="rifat-logo-icon">
                     <i class="fas fa-crown"></i>
                 </div>
-                <div class="jahbulonn-logo-text">Elegance</div>
+                <div class="rifat-logo-text">Elegance</div>
             </div>
             
-            <ul class="jahbulonn-menu">
-                <li class="jahbulonn-menu-item active">
-                    <span class="jahbulonn-menu-icon"><i class="fas fa-home"></i></span>
+            <ul class="rifat-menu">
+                <li class="rifat-menu-item active">
+                    <span class="rifat-menu-icon"><i class="fas fa-home"></i></span>
                     <span>Dashboard</span>
                 </li>
-                <li class="jahbulonn-menu-item">
-                    <span class="jahbulonn-menu-icon"><i class="fas fa-file-alt"></i></span>
+                <!-- <li class="rifat-menu-item">
+                    <span class="rifat-menu-icon"><i class="fas fa-file-alt"></i></span>
                     <span>Forms</span>
                 </li>
-                <li class="jahbulonn-menu-item">
-                    <span class="jahbulonn-menu-icon"><i class="fas fa-chart-pie"></i></span>
+                <li class="rifat-menu-item">
+                    <span class="rifat-menu-icon"><i class="fas fa-chart-pie"></i></span>
                     <span>Reports</span>
                 </li>
-                <li class="jahbulonn-menu-item">
-                    <span class="jahbulonn-menu-icon"><i class="fas fa-calendar-alt"></i></span>
+                <li class="rifat-menu-item">
+                    <span class="rifat-menu-icon"><i class="fas fa-calendar-alt"></i></span>
                     <span>Calendar</span>
                 </li>
-                <li class="jahbulonn-menu-item">
-                    <span class="jahbulonn-menu-icon"><i class="fas fa-cog"></i></span>
+                <li class="rifat-menu-item">
+                    <span class="rifat-menu-icon"><i class="fas fa-cog"></i></span>
                     <span>Settings</span>
                 </li>
-                <li class="jahbulonn-menu-item">
-                    <span class="jahbulonn-menu-icon"><i class="fas fa-question-circle"></i></span>
+                <li class="rifat-menu-item">
+                    <span class="rifat-menu-icon"><i class="fas fa-question-circle"></i></span>
                     <span>Help</span>
-                </li>
+                </li> -->
             </ul>
             
-            <div class="jahbulonn-user-profile">
-                <div class="jahbulonn-user-avatar"><?php echo substr($user_initials, 0, 2); ?></div>
-                <div class="jahbulonn-user-info">
-                    <div class="jahbulonn-user-name"><?= htmlspecialchars($_SESSION['user']); ?>!</div>
+            <div class="rifat-user-profile">
+                <div class="rifat-user-avatar"><?php echo substr($user_initials, 0, 2); ?></div>
+                <div class="rifat-user-info">
+                    <div class="rifat-user-name"><?= htmlspecialchars($_SESSION['user']); ?>!</div>
                     <!-- get user role from database -->
                     <?php
                     $user_role = "user";
                     ?>
-                    <div class="jahbulonn-user-role"><?= htmlspecialchars($user_role); ?>!</div>
+                    <div class="rifat-user-role"><?= htmlspecialchars($user_role); ?>!</div>
                 </div>
             </div>
         </div>
         
-        <div class="jahbulonn-main-content">
-            <div class="jahbulonn-header">
-                <div class="jahbulonn-welcome">Welcome, <?= htmlspecialchars($_SESSION['user']); ?>! 😊</div>
+        <div class="rifat-main-content">
+            <div class="rifat-header">
+                <div class="rifat-welcome">Welcome, <?= htmlspecialchars($_SESSION['user']); ?>! 😊</div>
                 <div>
-                    <a class="jahbulonn-logout-button" href="http://localhost/wordpress/">Logout</a>
+                    <a class="rifat-logout-button" href="../auth/logout.php">Logout</a>
                 </div>
             </div>
             
-            <div class="jahbulonn-stats-row">
-                <div class="jahbulonn-stat-card">
-                    <div class="jahbulonn-stat-icon">
+            <div class="rifat-stats-row">
+                <div class="rifat-stat-card">
+                    <div class="rifat-stat-icon">
                         <i class="fas fa-file-alt"></i>
                     </div>
-                    <div class="jahbulonn-stat-info">
-                        <div class="jahbulonn-stat-value">12</div>
-                        <div class="jahbulonn-stat-label">Pending Forms</div>
+                    <div class="rifat-stat-info">
+                        <div class="rifat-stat-value">12</div>
+                        <div class="rifat-stat-label">Pending Forms</div>
                     </div>
                 </div>
                 
-                <div class="jahbulonn-stat-card">
-                    <div class="jahbulonn-stat-icon">
+                <div class="rifat-stat-card">
+                    <div class="rifat-stat-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                    <div class="jahbulonn-stat-info">
-                        <div class="jahbulonn-stat-value">28</div>
-                        <div class="jahbulonn-stat-label">Completed Forms</div>
+                    <div class="rifat-stat-info">
+                        <div class="rifat-stat-value">28</div>
+                        <div class="rifat-stat-label">Completed Forms</div>
                     </div>
                 </div>
                 
-                <div class="jahbulonn-stat-card">
-                    <div class="jahbulonn-stat-icon">
+                <div class="rifat-stat-card">
+                    <div class="rifat-stat-icon">
                         <i class="fas fa-clock"></i>
                     </div>
-                    <div class="jahbulonn-stat-info">
-                        <div class="jahbulonn-stat-value">5</div>
-                        <div class="jahbulonn-stat-label">Days Remaining</div>
+                    <div class="rifat-stat-info">
+                        <div class="rifat-stat-value">5</div>
+                        <div class="rifat-stat-label">Days Remaining</div>
                     </div>
                 </div>
             </div>
             
-            <div class="jahbulonn-cards-container">
-                <div class="jahbulonn-card">
-                    <div class="jahbulonn-card-title">Quick Access</div>
-                    <div class="jahbulonn-card-content">
+            <div class="rifat-cards-container">
+                <!-- <div class="rifat-card">
+                    <div class="rifat-card-title">Quick Access</div>
+                    <div class="rifat-card-content">
                         Access your frequently used tools and resources with a single click. Streamline your workflow and increase productivity.
                     </div>
-                    <form method="post">
-                        <button type="submit" name="go_to_form" class="jahbulonn-btn">Go to Form</button>
+                    <form method="post" style="display: flex; gap: 15px;">
+                        <button type="submit" name="go_to_form" class="rifat-btn">Post Data</button>
+                        <a href="http://localhost/wordpress/products/" class="rifat-btn">See Products</a>
                     </form>
                 </div>
                 
-                <div class="jahbulonn-card">
-                    <div class="jahbulonn-card-title">Recent Activity</div>
-                    <div class="jahbulonn-card-content">
+                <div class="rifat-card">
+                    <div class="rifat-card-title">Recent Activity</div>
+                    <div class="rifat-card-content">
                         <ul>
                             <li>Form submission completed on May 14</li>
                             <li>New report generated on May 12</li>
@@ -604,16 +607,19 @@ if (!isset($_SESSION['user'])) {
                             <li>Document uploaded on May 8</li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 
-                <div class="jahbulonn-card jahbulonn-highlight-card">
-                    <div class="jahbulonn-card-title">Begin Your Journey</div>
-                    <div class="jahbulonn-card-content">
+                <div class="rifat-card rifat-highlight-card">
+                    <div class="rifat-card-title">You can do anything</div>
+                    <div class="rifat-card-content">
                         Our intuitive forms make it easy to submit your information quickly and efficiently. Click below to start the submission process and take the first step towards your goals.
                     </div>
-                    <form method="post">
-                        <a href="http://localhost/wordpress/form/" class="jahbulonn-btn jahbulonn-btn-large">Start Your Application</a>
-                    </form>
+                    <div style="display: flex; gap: 20px;">
+                        <form method="post">
+                        <a href="../admin/create.php" class="rifat-btn rifat-btn-large">Post Data</a>   
+                        </form>
+                        <a href="../admin/read.php" class="rifat-btn rifat-btn-large">See Products</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -622,9 +628,9 @@ if (!isset($_SESSION['user'])) {
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Mobile menu toggle functionality
-            const mobileMenuToggle = document.getElementById('jahbulonn-mobile-menu-toggle');
-            const sidebar = document.getElementById('jahbulonn-sidebar');
-            const backdrop = document.getElementById('jahbulonn-mobile-menu-backdrop');
+            const mobileMenuToggle = document.getElementById('rifat-mobile-menu-toggle');
+            const sidebar = document.getElementById('rifat-sidebar');
+            const backdrop = document.getElementById('rifat-mobile-menu-backdrop');
             
             mobileMenuToggle.addEventListener('click', function() {
                 sidebar.classList.toggle('active');
@@ -652,7 +658,7 @@ if (!isset($_SESSION['user'])) {
             });
             
             // Add click event listeners to menu items
-            const menuItems = document.querySelectorAll('.jahbulonn-menu-item');
+            const menuItems = document.querySelectorAll('.rifat-menu-item');
             menuItems.forEach(item => {
                 item.addEventListener('click', function() {
                     // Remove active class from all menu items
@@ -679,7 +685,7 @@ if (!isset($_SESSION['user'])) {
             });
             
             // Animated counters for stat values (optional enhancement)
-            const statValues = document.querySelectorAll('.jahbulonn-stat-value');
+            const statValues = document.querySelectorAll('.rifat-stat-value');
             statValues.forEach(value => {
                 const finalValue = parseInt(value.textContent);
                 value.textContent = '0';
